@@ -1,0 +1,106 @@
+﻿#home_header{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    margin-top:20px;
+    background-color:blue;
+}
+
+#index_header{
+    text-align:center;
+    font-size:40px;
+    font-weight:bold;
+}
+
+#contact_container div {
+    margin:10px;
+    text-align:center;
+    font-size:large;
+    font-size:20px;
+}
+
+#project_container{
+    text-align:center;
+}
+
+#projects{
+    margin-top:20px;
+    font-size:20px;
+}
+
+#about_container{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    background-color:blue;
+}
+
+img{
+    border-radius:50%;
+}
+
+#part1 {
+    text-align: center;
+   
+    font-size:25px;
+}
+
+
+#part3 {
+    text-align: center;
+    align-self:center;
+    font-size: 25px;
+}
+
+#about_container2{
+    display:flex;
+    justify-content:space-evenly;
+}
+
+#part4 {
+    border: 1px solid black;
+    font-size: 20px;
+    background-color: coral;
+    text-align: center;
+}
+
+#part5 {
+    border: 1px solid black;
+    font-size: 20px;
+    background-color: coral;
+    text-align: center;
+}
+
+#part6 {
+    border: 1px solid black;
+    font-size: 20px;
+    background-color: coral;
+    text-align: center;
+}
+
+#part7 {
+    border: 1px solid black;
+    font-size: 20px;
+    background-color: coral;
+    text-align: center;
+}
+
+#head1{
+    font-size:25px;
+    font-weight:bold;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+#wish {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#smiley{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+
+}

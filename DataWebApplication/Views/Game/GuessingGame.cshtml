@@ -1,0 +1,46 @@
+﻿<div id="home_header">Guessing Game</div>
+<div id="counter">
+    @if (ViewBag.Guesses != null)
+    {
+        @if (ViewBag.final != null)
+        {
+             <p>@ViewBag.final</p>
+        }
+        else
+        {
+            <p>@ViewBag.Guesses</p>
+        }
+    }
+</div>
+<div id="game_container">
+
+    <div>
+        @using (Html.BeginForm("GuessingGame", "Game", FormMethod.Post, new { autocomplete = "off" }))
+        {
+            @Html.Label("Guess:", null, new { @class = "label2" });
+            @Html.TextBox("number", null,
+            new { @min = "1", @max = "100", type = "number", @autofocus = "autofocus", @class = "textbox2", @maxlength = "3" })
+            <input type="submit" class="submit" value="Submit">
+        }
+    </div>
+
+</div>
+<div id="guess_message">@ViewBag.Message</div>
+<div id="highscore_header">
+    @if (ViewBag.highscore_header != null)
+    {
+        @ViewBag.highscore_header
+    }
+</div>
+<div id="list">
+    <ol>
+        @if (ViewBag.highscore!=null)
+        {
+            @foreach(var score in ViewBag.highscore)
+             {
+                   <li>@score</li>
+             }
+        }
+
+    </ol>
+</div>

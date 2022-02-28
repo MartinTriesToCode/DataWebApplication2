@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Styles/_Layout.css" />
+    <link rel="stylesheet" href="~/Styles/Home.css" />
+    <link rel="stylesheet" href="~/Styles/Doctor.css" />
+    <link rel="stylesheet" href="~/Styles/Game.css" />
+    <link rel="stylesheet" href="~/Styles/Person.css" />
+    <link rel="stylesheet" href="~/Styles/Index.css" />
+    <link rel="icon" href="data:,">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="@Url.Action("Index", "Home")">
+                <img src="~/Images/space.png" title="title" alt="space logo" />
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Projects", "Projects", "Home")</li>
+
+            </ul>
+
+        </nav>
+        <div id="nav2">
+            <ul>
+                <li>@Html.ActionLink("Person", "Person", "Person")</li>
+                <li>@Html.ActionLink("Fever Ceck", "FeverCheck", "Doctor")</li>
+                <li>@Html.ActionLink("Guessing Game", "GuessingGame", "Game")</li>
+            </ul>
+        </div>
+    </header>
+    <div class="main">
+        @RenderBody()
+    </div>
+    <footer>
+        Copyright &copy; Martin Lundgren @DateTime.Now
+    </footer>
+    <script src="~/Lib/jquery-3.6.0.js"></script>
+    <script src="~/Lib/getPerson.js"></script>
+    <script src="~/Lib/getLanguages.js"></script>
+    <script src="~/Lib/getLanguageList.js"></script>
+    <script src="~/Lib/delete.js"></script>
+</body>
+
+</html>
+

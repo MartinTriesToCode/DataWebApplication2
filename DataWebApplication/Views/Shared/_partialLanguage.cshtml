@@ -1,0 +1,19 @@
+﻿@model DataWebApplication.Models.Entities.Person
+
+    <div id="people_list">Languages</div>
+    <div class="row headrow1">
+        <div class="colhead c1">@Html.DisplayNameFor(Model => Model.Languages)</div>
+    </div>
+    @if (Model != null)
+    { 
+    @foreach (var language in Model.PersonLanguages)
+    {
+        <div class="row listrow1">
+            <div class="collist">@Html.DisplayFor(modelItem => language.Language.Name)</div>
+        </div>
+    }
+    }
+    else 
+    { 
+        <div>Invalid Id</div>
+    }

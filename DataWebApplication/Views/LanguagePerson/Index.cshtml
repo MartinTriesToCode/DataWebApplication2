@@ -1,0 +1,40 @@
+﻿
+@using DataWebApplication.Models.ViewModels
+
+@model PersonLanguageViewModel
+
+
+<div id="links">
+    <div>@Html.ActionLink("People", "Person", "Person")</div>
+    <div>@Html.ActionLink("Countries", "Index", "Country")</div>
+    <div>@Html.ActionLink("Languages", "Index", "Language")</div>
+</div>
+
+
+<div id="people_list">@Model.Language.Name</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Person.PersonId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Person.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Language.PersonLanguages)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Person.PersonId)</td>
+                <td>@Html.DisplayFor(modelItem => item.Person.Name)</td>
+ 
+            
+            </tr>
+        }
+
+    </tbody>
+</table>

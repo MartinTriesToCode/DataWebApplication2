@@ -1,0 +1,145 @@
+﻿@using DataWebApplication.Models.ViewModels
+
+@model PersonViewModel
+
+
+
+<div id="home_header">Person Management</div>
+<div class="forms">
+    <div class="form1">
+        <div class="form-header">Add Person</div>
+        <form asp-action="Person" method="post">
+            <div class="form-group">
+                <label asp-for="CreateViewModel.Name" class="form-label"></label>
+                <input asp-for="CreateViewModel.Name" class="form-control" />
+                @if (ViewBag.filter == null)
+                {
+                    <span asp-validation-for="CreateViewModel.Name" class="text-danger"></span>
+                }
+
+            </div>
+            <div class="form-group fg2">
+                <label asp-for="CreateViewModel.Phone" class="form-label"></label>
+                <input asp-for="CreateViewModel.Phone" class="form-control" />
+                @if (ViewBag.filter == null)
+                {
+                    <span asp-validation-for="CreateViewModel.Phone" class="text-danger"></span>
+                }
+
+            </div>
+            <div class="form-group fg3">
+                <label asp-for="CreateViewModel.City" class="form-label"></label>
+                <input asp-for="CreateViewModel.City" class="form-control" />
+                @if (ViewBag.filter == null)
+                {
+                    <span asp-validation-for="CreateViewModel.City" class="text-danger"></span>
+                }
+            </div>
+            <div class="form-group fg3">
+                <label asp-for="CreateViewModel.Country" class="form-label"></label>
+                <input asp-for="CreateViewModel.Country" class="form-control" />
+                @if (ViewBag.filter == null)
+                {
+                    <span asp-validation-for="CreateViewModel.Country" class="text-danger"></span>
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit_add" value="Add" class="submit_button" />
+            </div>
+        </form>
+    </div>
+    <hr />
+
+
+
+    <div class="form2">
+        <div class="form-header">Filter Person</div>
+        @using (Html.BeginForm("Person", "Person", FormMethod.Post))
+        {
+            <div class="form-group">
+                <span class="form-label">Name</span>
+                @Html.TextBoxFor(m => m.CreateViewModel.Name, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group btn2">
+                <span class="form-label">City</span>
+                @Html.TextBoxFor(m => m.CreateViewModel.City, new { @class = "form-control" })
+            </div>
+            <div class="form-group btn2">
+                <span class="form-label">Country</span>
+                @Html.TextBoxFor(m => m.CreateViewModel.Country, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <input class="submit_button btn1" name="submit_search" type="submit" value="Filter" />
+            </div>
+        }
+    </div>
+</div>
+<div id="links">
+    <div>@Html.ActionLink("Countries", "Index", "Country")</div>
+    <div>@Html.ActionLink("Cities", "Index", "City")</div>
+    <div>@Html.ActionLink("Languages", "Index", "Language")</div>
+</div>
+<hr />
+<hr />
+
+
+<div id="People"></div>
+<div id="people_list">List Of People</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>
+                @Html.ActionLink("Name", "Index",
+           new { sortOrder = ViewBag.Name })
+            </th>
+            <th>@Html.DisplayNameFor(Model => Model.CreateViewModel.Phone)</th>
+            <th>
+                @Html.ActionLink("City", "Index",
+                    new { sortOrder = ViewBag.City })
+            </th>
+            <th>
+                @Html.ActionLink("Country", "Index",
+                    new { sortOrder = ViewBag.Country })
+            </th>
+            <th>Language</th>
+            <th>Delete</th>
+        </tr>
+</thead>
+<tbody>
+    @foreach (var person in Model.People)
+    {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => person.PersonId)</td>
+        <td>@Html.DisplayFor(modelItem => person.Name)</td>
+        <td>@Html.DisplayFor(modelItem => person.Phone)</td>
+        <td>@Html.DisplayFor(modelItem => person.City.Name)</td>
+        <td>@Html.DisplayFor(modelItem => person.Country.Name)</td>
+        <td>
+            @using (Html.BeginForm("PersonRedirect", "PersonLanguage", new { personId = person.PersonId }, FormMethod.Post))
+            {
+                <Button id="delete_button">Edit</Button>
+            }
+
+        </td>
+        <td>
+            @using (Html.BeginForm("Delete", "Person", new { Id = person.PersonId }, FormMethod.Post))
+            {
+                <Button id="delete_button">DELETE</Button>
+            }
+        </td>
+    </tr>
+    }
+</tbody>
+</table>
+
+
+
+@*Row 103 to 105 is part of assignment 2
+
+<div class="partial">
+            <partial name="_partialPerson" model="Model.People" />
+    </div>*@

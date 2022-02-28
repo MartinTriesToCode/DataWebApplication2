@@ -1,0 +1,46 @@
+﻿@model DataWebApplication.Models.DoctorModel
+
+
+<div id="home_header">Check your temperature</div>
+
+@using (Html.BeginForm("FeverCheck", "Doctor", FormMethod.Post, new { autocomplete = "off" }))
+{
+    <div id="doctor_container">
+        <div id="radio_container">
+            <div>@Html.RadioButton("scale", "Celsius", true) Celsius</div>
+            <div>@Html.RadioButton("scale", "Fahrenheit", false) Fahrenheit</div>
+        </div>
+        <div id="textbox_container">
+            <div>@Html.Label("Temp: ", null, new { @class = "label1" })</div>
+            <div id="textbox1">
+                @Html.TextBox("temp", null,
+                    new
+                         {
+                             @min = "20",
+                             @max = "120",
+                             type = "number",
+                             step = "0.1",
+                        @class = "tb",
+                             @maxlength = "3",
+                             @autofocus = "autofocus"
+                         })
+            </div>
+            <div><input type="submit" class="submit" value="Check" /></div>
+        </div>
+        <div id="fever_mess">@ViewBag.message</div>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

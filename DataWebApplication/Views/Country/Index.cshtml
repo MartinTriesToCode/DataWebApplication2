@@ -1,0 +1,47 @@
+﻿@using DataWebApplication.Models.ViewModels
+
+@model CountryViewModel
+
+
+
+<div id="links">
+    <div>@Html.ActionLink("People", "Person", "Person")</div>
+    <div>@Html.ActionLink("Cities", "Index", "City")</div>
+</div>
+
+
+
+<div id="people_list">List Of Countries</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.CreateCountryVM.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.CreateCountryVM.Name)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        @foreach (var country in Model.Countries)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => country.Id)</td>
+                <td>@Html.DisplayFor(modelItem => country.Name)</td>
+                <td>
+                    @using (Html.BeginForm("Delete", "Country", new {country = country.Name }, FormMethod.Post))
+                    {
+                        <Button id="delete_button">DELETE</Button>
+                    }
+                </td>
+            </tr>
+        }
+       
+    </tbody>
+</table>
+
+

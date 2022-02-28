@@ -1,0 +1,21 @@
+﻿@model List<DataWebApplication.Models.Entities.Person>
+
+<div id="people_list">List Of People</div>
+<div class="row headrow">
+    <div class="colhead c1">@Html.DisplayNameFor(Model => Model[0].PersonId)</div>
+    <div class="colhead c1">@Html.DisplayNameFor(Model => Model[0].Name)</div>
+    <div class="colhead c1">@Html.DisplayNameFor(Model => Model[0].Phone)</div>
+    <div class="colhead c1">@Html.DisplayNameFor(Model => Model[0].City)</div>
+    <div class="colhead c1">@Html.DisplayNameFor(Model => Model[0].Country)</div>
+</div>         
+
+    @foreach (var person in Model)
+    {
+<div class="row listrow">
+    <div class="collist">@Html.DisplayFor(modelItem => person.PersonId)</div>
+    <div class="collist">@Html.DisplayFor(modelItem => person.Name)</div>
+    <div class="collist">@Html.DisplayFor(modelItem => person.Phone)</div>
+    <div class="collist">@Html.DisplayFor(modelItem => person.City.Name)</div>
+    <div class="collist">@Html.DisplayFor(modelItem => person.Country.Name)</div>
+</div>
+    }

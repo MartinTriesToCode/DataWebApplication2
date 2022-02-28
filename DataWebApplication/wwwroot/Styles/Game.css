@@ -1,0 +1,66 @@
+﻿#game_container{
+    display:flex;
+    justify-content:center;
+}
+
+.label2{
+    font-size: 30px;
+}
+
+.textbox2{
+    font-size:30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.submit {
+    font-size: 30px;
+    border-radius:5px;
+    background-color:lawngreen;
+}
+
+#counter{
+    text-align:center;
+    font-size:25px;
+    font-weight:bold;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+#list{
+   
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+}
+
+#list ol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    padding-left:20px;
+}
+
+#list ol li{
+    padding-left:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+#highscore_header{
+    text-align:center;
+    margin-top:20px;
+    margin-bottom:20px;
+    font-size:30px;
+    font-weight:bold;
+}
+
+#guess_message{
+    font-size:25px;
+    font-weight:bold;
+}
