@@ -49,7 +49,7 @@ namespace DataWebApplication.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles ="User")]
+        [Authorize(Roles ="User, Admin")]
         public ActionResult Person(CreatePersonViewModel createViewModel)
         {
             string filtertext;
@@ -129,6 +129,7 @@ namespace DataWebApplication.Controllers
 
         //Partial view action
         [HttpGet]
+        [Authorize(Roles ="User")]
         public ActionResult PersonList()
         {
             var list = _context.People.Include("City").Include("Country").ToList();
