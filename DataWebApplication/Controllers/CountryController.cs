@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using DataWebApplication.Data;
 using DataWebApplication.Models.Entities;
 using DataWebApplication.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CountryController : Controller
     {
         private readonly ApplicationDbContext _context;

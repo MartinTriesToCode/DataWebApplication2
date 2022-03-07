@@ -7,6 +7,7 @@ using DataWebApplication.Models.Entities;
 using DataWebApplication.Models.ViewModels;
 using DataWebApplication.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DataWebApplication.Controllers
 {
@@ -20,6 +21,7 @@ namespace DataWebApplication.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Person(string sortOrder)
         {
             List<Person> listCopy = new List<Person>();
@@ -47,7 +49,7 @@ namespace DataWebApplication.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize(Roles ="User")]
         public ActionResult Person(CreatePersonViewModel createViewModel)
         {
             string filtertext;
@@ -109,9 +111,15 @@ namespace DataWebApplication.Controllers
             return View(pvm);
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete()
+        {
+            return RedirectToAction("Person");
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             _context.People.Remove(_context.People.Find(id));
             _context.SaveChanges();
@@ -160,6 +168,7 @@ namespace DataWebApplication.Controllers
 
         //Partial view action
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult PersonDelete(string id)
         {
             int intId = Convert.ToInt32(id);

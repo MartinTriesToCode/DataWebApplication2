@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/Styles/_Layout.css" />
+    <link rel="stylesheet" href="~/Styles/_LoginPartial.css" />
     <link rel="stylesheet" href="~/Styles/Home.css" />
     <link rel="stylesheet" href="~/Styles/Doctor.css" />
     <link rel="stylesheet" href="~/Styles/Game.css" />
@@ -26,15 +27,19 @@
                 <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Projects", "Projects", "Home")</li>
+                <li>@Html.ActionLink("Fever Ceck", "FeverCheck", "Doctor")</li>
+                <li>@Html.ActionLink("Guessing Game", "GuessingGame", "Game")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>@Html.ActionLink("Person", "Person", "Person")</li>
+                }
 
             </ul>
 
         </nav>
         <div id="nav2">
             <ul>
-                <li>@Html.ActionLink("Person", "Person", "Person")</li>
-                <li>@Html.ActionLink("Fever Ceck", "FeverCheck", "Doctor")</li>
-                <li>@Html.ActionLink("Guessing Game", "GuessingGame", "Game")</li>
+                <li><partial name="_LoginPartial" /></li>
             </ul>
         </div>
     </header>
@@ -49,6 +54,7 @@
     <script src="~/Lib/getLanguages.js"></script>
     <script src="~/Lib/getLanguageList.js"></script>
     <script src="~/Lib/delete.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

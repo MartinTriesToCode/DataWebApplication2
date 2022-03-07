@@ -9,6 +9,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc.Razor;
 using DataWebApplication.Data;
 using Microsoft.EntityFrameworkCore;
+using DataWebApplication.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace DataWebApplication
 {
@@ -25,13 +27,37 @@ namespace DataWebApplication
             services.AddDistributedMemoryCache();
 
             services.AddSession();
-          
-            services.AddMvc()
 
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                })
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            services.AddRazorPages();
 
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI();
+
+            
+
+            
+
+
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
@@ -58,6 +84,10 @@ namespace DataWebApplication
 
             app.UseStaticFiles();
             app.UseRouting();
+           
+            app.UseAuthentication();
+            app.UseAuthorization();
+            
             app.UseSession();
            
             var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
@@ -65,6 +95,7 @@ namespace DataWebApplication
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(name: "person",
                 pattern: "/Person",
                 defaults: new { controller = "Person", action = "Person" });
@@ -81,6 +112,7 @@ namespace DataWebApplication
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
+                
             });
         }
     }

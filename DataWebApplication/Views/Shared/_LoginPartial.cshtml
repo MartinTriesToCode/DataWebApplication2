@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using DataWebApplication.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<style>
+    #welcome{
+        color:white;
+    }
+  
+</style>
+
+
+<ul>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("User"))
+        {
+            <li><div id="welcome">Welcome User!</div></li>
+        }
+        @if (User.IsInRole("Admin"))
+        {
+            <li><div id="welcome">Welcome Admin!</div></li>
+        }
+
+        <li class="nav-item">
+            <a id="manage" asp-area="Identity"
+               asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)!</a>
+        </li>
+        <li class="button_row">
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+
+            @if (User.IsInRole("Admin"))
+            {
+        <p> &nbsp;@Html.ActionLink("Roles", "Index", "Role", null, new { style = "text-decoration:none;" })</p>
+            }
+
+        </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+        }
+</ul>
