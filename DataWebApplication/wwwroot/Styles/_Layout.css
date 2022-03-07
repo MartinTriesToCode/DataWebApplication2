@@ -43,11 +43,48 @@ nav ul {
     list-style: none;
 }
 
-#nav2{
+#nav2 {
     display:flex;
-    align-items:center;
+    justify-content:center;
+    text-align:center;
+   
+    margin-top:5px;
     margin-right:10px;
 }
+
+#nav2 li form{
+    margin-top:5px;
+}
+
+.button_row{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+
+.button_row div{
+    margin-top:5px;
+   
+    border:1px solid orange;
+    background-color:yellowgreen;
+    color:black;
+    text-align:center;
+    padding:2px;
+    font-size:14px;
+}
+
+.role_link {
+    text-decoration: none;
+}
+
+#logout{
+    background-color:yellowgreen;
+    cursor:pointer;
+    padding:2px;
+}
+
+
 
 nav a {
     width: 100px;
@@ -72,3 +109,5 @@ footer {
     color: yellow;
     text-align: center;
 }
+
+

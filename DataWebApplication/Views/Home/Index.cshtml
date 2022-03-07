@@ -1,19 +1,31 @@
-﻿
+﻿<style>
+    #info {
+        text-align: center;
+    }
+</style>
 
 <div id="index_header">Welcome to my homepage!</div>
+@if (!User.Identity.IsAuthenticated)
+{
+<p id="info">
+    Please register or login to get access to Person. You can then view
+    the people list, add new people to the list and view other information about people.
+</p>}
 
-
+@if (User.Identity.IsAuthenticated)
+{
 <button class="index-btn" onclick="getPersonList()">People</button>
 
-<div id="index_form">
-    <label id="index_label"> Enter ID</label>
-    <input id="person-id" type="number"/>
-    <div class="btn-group">
-        <input class="index-btn" id="languages-btn" type="button" value=" Languages" />
-        <input class="index-btn" id="delete-btn" type="button" value=" Delete" />
-    </div>
-</div>
 
+
+                <div id="index_form">
+                    <label id="index_label"> Enter ID</label>
+                    <input id="person-id" type="number" />
+                    <div class="btn-group">
+                        <input class="index-btn" id="languages-btn" type="button" value=" Languages" />
+                        <input class="index-btn" id="delete-btn" type="button" value=" Delete" />
+                    </div>
+                </div>}
 
 <div id="message"></div>
 <div id="People"></div>

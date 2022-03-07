@@ -3,10 +3,11 @@ using System.Linq;
 using DataWebApplication.Data;
 using DataWebApplication.Models.Entities;
 using DataWebApplication.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DataWebApplication.Controllers
 {
-    
+    [Authorize(Roles ="Admin")]
     public class CityController : Controller
     {
         private readonly ApplicationDbContext _context;
